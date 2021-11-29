@@ -1,5 +1,6 @@
 package nl.novi.TechItEasy.Controllers;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -13,14 +14,17 @@ public class TelevisionController {
 
     //Constructor
     public TelevisionController() {
-        televisionBrand.add("Siemens");
-        televisionBrand.add("Samsung");
-        televisionBrand.add("Philips");
-        televisionBrand.add("LG");
         televisionBrand.add("Sony");
         televisionBrand.add("Panasonic");
         televisionBrand.add("Loewe");
         televisionBrand.add("Salora");
         televisionBrand.add("Sharp");
+        televisionBrand.add("Philips");
+        televisionBrand.add("AKAI");
+    }
+
+    @GetMapping(value = "/televisions")
+    public List<String> getTelevisionBrand(){
+        return televisionBrand;
     }
 }
