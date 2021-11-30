@@ -1,6 +1,8 @@
 package nl.novi.TechItEasy.Controllers;
 
 import nl.novi.TechItEasy.model.Television;
+import nl.novi.TechItEasy.repository.TelevisionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -31,13 +33,17 @@ public class TelevisionController {
         television2.setAvailablePrice(575.95);
         televisions.add(television2);
     }
+
+    @Autowired  //link naar de repository Television
+    private TelevisionRepository televisionRepository;
+
     @GetMapping(value = "/televisions")
     public ResponseEntity<Object> getTelevisions(){
-        return ResponseEntity.ok(televisions); //Jackson vertaling object => Json
+        return ResponseEntity.ok(televisionRepository.findAll()); //Jackson vertaling object => Json
     }
     @GetMapping(value = "/televisions/{id}")
     public ResponseEntity<Object> getTelevision(@PathVariable int id){
-        return ResponseEntity.ok(televisions.get(id));
+        return ResponseEntity.ok(televisionRepository.findById(id));
     }
     @DeleteMapping(value = "/televisions/{id}")
     public ResponseEntity<Object> deleteTelevision(@PathVariable("id") int id){
