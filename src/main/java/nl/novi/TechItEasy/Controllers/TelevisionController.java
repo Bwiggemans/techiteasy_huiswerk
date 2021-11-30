@@ -1,5 +1,6 @@
 package nl.novi.TechItEasy.Controllers;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,20 +24,38 @@ public class TelevisionController {
         televisionBrand.add("AKAI");
     }
 
-    @GetMapping(value = "/televisions")
+/*    @GetMapping(value = "/televisions")
     public List<String> getTelevisions(){
         return televisionBrand;
     }
-    @GetMapping(value = "/televisions/{id}")
+ */
+    @GetMapping("/televisions")
+    public ResponseEntity<Object> getAllTelevisions() {
+        return ResponseEntity.ok(televisionBrand);
+    }
+/*  @GetMapping(value = "/televisions/{id}")
     public String getTelevision(@PathVariable int id){
         return televisionBrand.get(id);
     }
-    @DeleteMapping(value = "/televisions/{id}")
+ */
+    @GetMapping("/televisions/{id}")
+    public ResponseEntity<Object> getTelevision(@PathVariable int id) {
+        return ResponseEntity.ok(televisionBrand.get(id));
+    }
+/*  @DeleteMapping(value = "/televisions/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public String deleteTelevision(@PathVariable int id){
         televisionBrand.remove(id);
         return "Television deleted";
     }
+ */
+    @DeleteMapping("/televisions/{id}")
+    public ResponseEntity<Object> deleteTelevision(@PathVariable int id) {
+        televisionBrand.remove(id);
+        return ResponseEntity.noContent().build();
+    }
     @PostMapping("/televisions")
+    @ResponseStatus(HttpStatus.CREATED)
     public String addTelevision(@RequestBody String television) {
         televisionBrand.add(television);
         return "Added";
@@ -46,10 +65,4 @@ public class TelevisionController {
         televisionBrand.set(id, television);
         return ResponseEntity.noContent().build();
     }
-    @PatchMapping("televisions/{id}")
-    public ResponseEntity<Object> partialTelevision(@PathVariable int id, @RequestBody String television) {
-        televisionBrand.set(id, television);
-        return ResponseEntity.noContent().build();
-    }
-
 }
