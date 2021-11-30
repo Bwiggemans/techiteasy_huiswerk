@@ -1,9 +1,11 @@
 package nl.novi.TechItEasy.Controllers;
 
-import org.springframework.http.HttpStatus;
+import nl.novi.TechItEasy.model.Television;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,58 +13,65 @@ import java.util.List;
 public class TelevisionController {
 
     //Attributen
-    private List<String> televisionBrand = new ArrayList<>();
+    private List<Television> televisions = new ArrayList<>();
 
     //Constructor
     public TelevisionController() {
-        televisionBrand.add("Sony");
-        televisionBrand.add("Panasonic");
-        televisionBrand.add("Loewe");
-        televisionBrand.add("Salora");
-        televisionBrand.add("Sharp");
-        televisionBrand.add("Philips");
-        televisionBrand.add("AKAI");
+        Television television1 = new Television();
+        television1.setBrand("Panasonic");
+        television1.setName("QLed24");
+        television1.setPrice(495.95);
+        television1.setAvailablePrice(475.95);
+        televisions.add(television1);
+
+        Television television2 = new Television();
+        television2.setBrand("Sony");
+        television2.setName("QLed65");
+        television2.setPrice(595.95);
+        television2.setAvailablePrice(575.95);
+        televisions.add(television2);
+    }
+    @GetMapping(value = "/televisions")
+    public ResponseEntity<Object> getTelevisions(){
+        return ResponseEntity.ok(televisions); //Jackson vertaling object => Json
+    }
+    @GetMapping(value = "/televisions/{id}")
+    public ResponseEntity<Object> getTelevision(@PathVariable int id){
+        return ResponseEntity.ok(televisions.get(id));
+    }
+    @DeleteMapping(value = "/televisions/{id}")
+    public ResponseEntity<Object> deleteTelevision(@PathVariable("id") int id){
+        televisions.remove(id);
+        return ResponseEntity.noContent().build();
+    }
+    @PostMapping(value = "/televisions")
+    public ResponseEntity<Object> addTelevision(@RequestBody Television television){
+        televisions.add(television);
+
+        int newId = televisions.size() - 1;
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newId).toUri();
+        return ResponseEntity.created(location).build();
+    }
+    @PutMapping(value = "/televisions/{id}")
+    public ResponseEntity<Object> updateTelevision(@PathVariable int id, @RequestBody Television television){
+        televisions.set(id, television);
+        return ResponseEntity.noContent().build();
+    }
+    @PatchMapping(value = "/televisions/{id}")
+    public ResponseEntity<Object> partialUpdateTelevision(@PathVariable int id, @RequestBody Television television){
+        Television existingTelevision = televisions.get(id);
+        if (!(television.getType()==null) && !television.getType().isEmpty()){
+            existingTelevision.setType(television.getType());
+        }
+        if (!(television.getBrand()==null) && !television.getBrand().isEmpty()){
+            existingTelevision.setBrand(television.getBrand());
+        }
+        if (!(television.getName()==null) && !television.getName().isEmpty()){
+            existingTelevision.setName(television.getName());
+        }
+        televisions.set(id, existingTelevision);
+        return ResponseEntity.noContent().build();
     }
 
-/*    @GetMapping(value = "/televisions")
-    public List<String> getTelevisions(){
-        return televisionBrand;
-    }
- */
-    @GetMapping("/televisions")
-    public ResponseEntity<Object> getAllTelevisions() {
-        return ResponseEntity.ok(televisionBrand);
-    }
-/*  @GetMapping(value = "/televisions/{id}")
-    public String getTelevision(@PathVariable int id){
-        return televisionBrand.get(id);
-    }
- */
-    @GetMapping("/televisions/{id}")
-    public ResponseEntity<Object> getTelevision(@PathVariable int id) {
-        return ResponseEntity.ok(televisionBrand.get(id));
-    }
-/*  @DeleteMapping(value = "/televisions/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public String deleteTelevision(@PathVariable int id){
-        televisionBrand.remove(id);
-        return "Television deleted";
-    }
- */
-    @DeleteMapping("/televisions/{id}")
-    public ResponseEntity<Object> deleteTelevision(@PathVariable int id) {
-        televisionBrand.remove(id);
-        return ResponseEntity.noContent().build();
-    }
-    @PostMapping("/televisions")
-    @ResponseStatus(HttpStatus.CREATED)
-    public String addTelevision(@RequestBody String television) {
-        televisionBrand.add(television);
-        return "Added";
-    }
-    @PutMapping("televisions/{id}")
-    public ResponseEntity<Object> updateTelevision(@PathVariable int id, @RequestBody String television) {
-        televisionBrand.set(id, television);
-        return ResponseEntity.noContent().build();
-    }
 }
