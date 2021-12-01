@@ -1,10 +1,13 @@
 package nl.novi.TechItEasy.service;
 
+import nl.novi.TechItEasy.Exceptions.RecordNotFoundException;
 import nl.novi.TechItEasy.model.Television;
 import nl.novi.TechItEasy.repository.TelevisionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class TelevisionService {
@@ -17,7 +20,15 @@ public class TelevisionService {
     }
 
     public Television getTelevision(int id){
-        return televisionRepository.findById(id).orElse(null);
+        Optional<Television> optionalTelevision = televisionRepository.findById(id);
+
+        if (optionalTelevision.isPresent()){
+            return optionalTelevision.get();
+        }
+        else{
+            //exception maken
+            throw new RecordNotFoundException("Id does not exist!!!");
+        }
     }
 
     public void deleteTelevision(int id){
