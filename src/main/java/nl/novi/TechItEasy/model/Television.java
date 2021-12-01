@@ -27,45 +27,7 @@ public class Television {
     private Integer originalStock;
     private Integer sold;
 
-    //Default constructor
-    public Television() {
-    }
-    //constructor met alle attributen
-    public Television(int id,
-                      String type,
-                      String brand,
-                      String name,
-                      double price,
-                      double availablePrice,
-                      double refreshRate,
-                      String screenType,
-                      String screenQuality,
-                      boolean smartTv,
-                      boolean wifi,
-                      boolean voiceControl,
-                      boolean hdr,
-                      boolean bluetooth,
-                      boolean ambilight,
-                      Integer originalStock,
-                      Integer sold) {
-        this.id = id;
-        this.type = type;
-        this.brand = brand;
-        this.name = name;
-        this.price = price;
-        this.availablePrice = availablePrice;
-        this.refreshRate = refreshRate;
-        this.screenType = screenType;
-        this.screenQuality = screenQuality;
-        this.smartTv = smartTv;
-        this.wifi = wifi;
-        this.voiceControl = voiceControl;
-        this.hdr = hdr;
-        this.bluetooth = bluetooth;
-        this.ambilight = ambilight;
-        this.originalStock = originalStock;
-        this.sold = sold;
-    }
+    //constructor in springboot niet nodig
 
     //Getters and setters
     public int getId() {
