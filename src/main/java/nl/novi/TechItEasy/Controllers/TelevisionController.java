@@ -14,26 +14,6 @@ import java.util.List;
 @RestController
 public class TelevisionController {
 
-    //Attributen
-    private List<Television> televisions = new ArrayList<>();
-
-    //Constructor
-    public TelevisionController() {
-        Television television1 = new Television();
-        television1.setBrand("Panasonic");
-        television1.setName("QLed24");
-        television1.setPrice(495.95);
-        television1.setAvailablePrice(475.95);
-        televisions.add(television1);
-
-        Television television2 = new Television();
-        television2.setBrand("Sony");
-        television2.setName("QLed65");
-        television2.setPrice(595.95);
-        television2.setAvailablePrice(575.95);
-        televisions.add(television2);
-    }
-
     @Autowired  //link naar de repository Television
     private TelevisionRepository televisionRepository;
 
@@ -47,26 +27,45 @@ public class TelevisionController {
     }
     @DeleteMapping(value = "/televisions/{id}")
     public ResponseEntity<Object> deleteTelevision(@PathVariable("id") int id){
-        televisions.remove(id);
+        televisionRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
     @PostMapping(value = "/televisions")
     public ResponseEntity<Object> addTelevision(@RequestBody Television television){
-        televisions.add(television);
-
-        int newId = televisions.size() - 1;
+        Television newTelevision = televisionRepository.save(television);
+        int newId = newTelevision.getId();
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newId).toUri();
+
         return ResponseEntity.created(location).build();
     }
     @PutMapping(value = "/televisions/{id}")
     public ResponseEntity<Object> updateTelevision(@PathVariable int id, @RequestBody Television television){
-        televisions.set(id, television);
+        Television existingTelevision = televisionRepository.findById(id).orElse(null);
+
+        if (!television.getType().isEmpty()){
+            existingTelevision.setType(television.getType());
+        }
+        if (!television.getBrand().isEmpty()){
+            existingTelevision.setBrand(television.getBrand());
+        }
+        if (!television.getName().isEmpty()){
+            existingTelevision.setName(television.getName());
+        }
+        if (!television.getScreenType().isEmpty()){
+            existingTelevision.setScreenType(television.getScreenType());
+        }
+        if (!television.getScreenQuality().isEmpty()){
+            existingTelevision.setScreenQuality(television.getScreenQuality());
+        }
+
+        televisionRepository.save(existingTelevision);
         return ResponseEntity.noContent().build();
     }
     @PatchMapping(value = "/televisions/{id}")
     public ResponseEntity<Object> partialUpdateTelevision(@PathVariable int id, @RequestBody Television television){
-        Television existingTelevision = televisions.get(id);
+        Television existingTelevision = televisionRepository.findById(id).orElse(null);
+
         if (!(television.getType()==null) && !television.getType().isEmpty()){
             existingTelevision.setType(television.getType());
         }
@@ -76,7 +75,14 @@ public class TelevisionController {
         if (!(television.getName()==null) && !television.getName().isEmpty()){
             existingTelevision.setName(television.getName());
         }
-        televisions.set(id, existingTelevision);
+        if (!(television.getScreenType()==null) && !television.getScreenType().isEmpty()){
+            existingTelevision.setScreenType(television.getScreenType());
+        }
+        if (!(television.getScreenQuality()==null) && !television.getScreenQuality().isEmpty()){
+            existingTelevision.setScreenQuality(television.getScreenQuality());
+        }
+
+        televisionRepository.save(existingTelevision);
         return ResponseEntity.noContent().build();
     }
 
