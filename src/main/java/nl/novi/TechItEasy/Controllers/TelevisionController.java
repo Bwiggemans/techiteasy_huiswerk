@@ -18,8 +18,8 @@ public class TelevisionController {
     private TelevisionService televisionService;
 
     @GetMapping(value = "/televisions")
-    public ResponseEntity<Object> getTelevisions(){
-        return ResponseEntity.ok(televisionService.getTelevisions()); //Jackson vertaling object => Json
+    public ResponseEntity<Object> getTelevisions(@RequestParam(name="brand", defaultValue = "")String brand){
+        return ResponseEntity.ok(televisionService.getTelevisions(brand)); //Jackson vertaling object => Json
     }
     @GetMapping(value = "/televisions/{id}")
     public ResponseEntity<Object> getTelevision(@PathVariable int id){

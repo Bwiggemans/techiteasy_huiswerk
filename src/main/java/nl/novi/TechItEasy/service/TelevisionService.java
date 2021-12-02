@@ -15,8 +15,13 @@ public class TelevisionService {
     @Autowired
     private TelevisionRepository televisionRepository;
 
-    public Iterable<Television> getTelevisions(){
-        return televisionRepository.findAll();
+    public Iterable<Television> getTelevisions(String brand){
+        if (brand.isEmpty()){
+            return televisionRepository.findAll();
+        }
+        else {
+            return televisionRepository.findAllByBrandContainingIgnoreCase(brand);
+        }
     }
 
     public Television getTelevision(int id){
