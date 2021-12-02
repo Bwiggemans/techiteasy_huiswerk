@@ -57,11 +57,11 @@ public class TelevisionService {
         if (!television.getName().isEmpty()){
             existingTelevision.setName(television.getName());
         }
-        if (!television.getScreenType().isEmpty()){
-            existingTelevision.setScreenType(television.getScreenType());
+        if (!television.getScreentype().isEmpty()){
+            existingTelevision.setScreentype(television.getScreentype());
         }
-        if (!television.getScreenQuality().isEmpty()){
-            existingTelevision.setScreenQuality(television.getScreenQuality());
+        if (!television.getScreenquality().isEmpty()){
+            existingTelevision.setScreenquality(television.getScreenquality());
         }
 
         televisionRepository.save(existingTelevision);
@@ -79,11 +79,11 @@ public class TelevisionService {
         if (!(television.getName()==null) && !television.getName().isEmpty()){
             existingTelevision.setName(television.getName());
         }
-        if (!(television.getScreenType()==null) && !television.getScreenType().isEmpty()){
-            existingTelevision.setScreenType(television.getScreenType());
+        if (!(television.getScreentype()==null) && !television.getScreentype().isEmpty()){
+            existingTelevision.setScreentype(television.getScreentype());
         }
-        if (!(television.getScreenQuality()==null) && !television.getScreenQuality().isEmpty()){
-            existingTelevision.setScreenQuality(television.getScreenQuality());
+        if (!(television.getScreenquality()==null) && !television.getScreenquality().isEmpty()){
+            existingTelevision.setScreenquality(television.getScreenquality());
         }
 
         televisionRepository.save(existingTelevision);

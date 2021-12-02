@@ -13,8 +13,18 @@ public class Television {
     private String type;
     private String brand;
     private String name;
-    private String screenType;
-    private String screenQuality;
+    private double price;
+    private double size;
+    private double refreshrate;
+    private String screentype;
+    private String screenquality;
+    private boolean smarttv;
+    private boolean voicecontrol;
+    private boolean hdr;
+    private boolean bluetooth;
+    private boolean ambilight;
+    private Integer originalstock;
+    private Integer sold;
 
     //constructor in springboot niet nodig
 
@@ -43,16 +53,76 @@ public class Television {
     public void setName(String name) {
         this.name = name;
     }
-    public String getScreenType() {
-        return screenType;
+    public double getPrice() {
+        return price;
     }
-    public void setScreenType(String screenType) {
-        this.screenType = screenType;
+    public void setPrice(double price) {
+        this.price = price;
     }
-    public String getScreenQuality() {
-        return screenQuality;
+    public double getSize() {
+        return size;
     }
-    public void setScreenQuality(String screenQuality) {
-        this.screenQuality = screenQuality;
+    public void setSize(double size) {
+        this.size = size;
+    }
+    public double getRefreshrate() {
+        return refreshrate;
+    }
+    public void setRefreshrate(double refreshrate) {
+        this.refreshrate = refreshrate;
+    }
+    public String getScreentype() {
+        return screentype;
+    }
+    public void setScreentype(String screentype) {
+        this.screentype = screentype;
+    }
+    public String getScreenquality() {
+        return screenquality;
+    }
+    public void setScreenquality(String screenquality) {
+        this.screenquality = screenquality;
+    }
+    public boolean isSmarttv() {
+        return smarttv;
+    }
+    public void setSmarttv(boolean smarttv) {
+        this.smarttv = smarttv;
+    }
+    public boolean isVoicecontrol() {
+        return voicecontrol;
+    }
+    public void setVoicecontrol(boolean voicecontrol) {
+        this.voicecontrol = voicecontrol;
+    }
+    public boolean isHdr() {
+        return hdr;
+    }
+    public void setHdr(boolean hdr) {
+        this.hdr = hdr;
+    }
+    public boolean isBluetooth() {
+        return bluetooth;
+    }
+    public void setBluetooth(boolean bluetooth) {
+        this.bluetooth = bluetooth;
+    }
+    public boolean isAmbilight() {
+        return ambilight;
+    }
+    public void setAmbilight(boolean ambilight) {
+        this.ambilight = ambilight;
+    }
+    public Integer getOriginalstock() {
+        return originalstock;
+    }
+    public void setOriginalstock(Integer originalstock) {
+        this.originalstock = originalstock;
+    }
+    public Integer getSold() {
+        return sold;
+    }
+    public void setSold(Integer sold) {
+        this.sold = sold;
     }
 }
