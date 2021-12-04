@@ -44,28 +44,31 @@ public class TelevisionService {
         return newTelevision.getId();
     }
 
-    public void updateTelevision(int id, Television television){
-        Television existingTelevision = televisionRepository.findById(id).orElse(null);
+    public void updateTelevision(int id, Television television) {
+        if (!televisionRepository.existsById(id)) {
+            throw new RecordNotFoundException("No television found");
+        }
+        Television storedTelevision = televisionRepository.findById(id).orElse(null);
+        storedTelevision.setAmbilight(television.isAmbilight());
+        storedTelevision.setSize(television.getSize());
+        storedTelevision.setBluetooth(television.isBluetooth());
+        storedTelevision.setBrand(television.getBrand());
+        storedTelevision.setHdr(television.isHdr());
+        storedTelevision.setId(storedTelevision.getId());
+        storedTelevision.setName(television.getName());
+        storedTelevision.setOriginalStock(television.getOriginalStock());
+        storedTelevision.setPrice(television.getPrice());
+        storedTelevision.setRefreshRate(television.getRefreshRate());
+        storedTelevision.setScreenType(television.getScreenType());
+        storedTelevision.setScreenQuality(television.getScreenQuality());
+        storedTelevision.setSmartTv(television.isSmartTv());
+        storedTelevision.setSold(television.getSold());
+        storedTelevision.setType(television.getType());
+        storedTelevision.setVoiceControl(television.isVoiceControl());
+        storedTelevision.setWifi(television.isWifi());
 
-        if (!television.getType().isEmpty()){
-            existingTelevision.setType(television.getType());
-        }
-        if (!television.getBrand().isEmpty()){
-            existingTelevision.setBrand(television.getBrand());
-        }
-        if (!television.getName().isEmpty()){
-            existingTelevision.setName(television.getName());
-        }
-        if (!television.getScreentype().isEmpty()){
-            existingTelevision.setScreentype(television.getScreentype());
-        }
-        if (!television.getScreenquality().isEmpty()){
-            existingTelevision.setScreenquality(television.getScreenquality());
-        }
-
-        televisionRepository.save(existingTelevision);
+        televisionRepository.save(storedTelevision);
     }
-
     public void partialUpdateTelevision(int id, Television television){
         Television existingTelevision = televisionRepository.findById(id).orElse(null);
 
@@ -78,11 +81,44 @@ public class TelevisionService {
         if (!(television.getName()==null) && !television.getName().isEmpty()){
             existingTelevision.setName(television.getName());
         }
-        if (!(television.getScreentype()==null) && !television.getScreentype().isEmpty()){
-            existingTelevision.setScreentype(television.getScreentype());
+        if (!(television.getScreenType()==null) && !television.getScreenType().isEmpty()){
+            existingTelevision.setScreenType(television.getScreenType());
         }
-        if (!(television.getScreenquality()==null) && !television.getScreenquality().isEmpty()){
-            existingTelevision.setScreenquality(television.getScreenquality());
+        if (!(television.getScreenQuality()==null) && !television.getScreenQuality().isEmpty()){
+            existingTelevision.setScreenQuality(television.getScreenQuality());
+        }
+        if (!(television.isAmbilight() == false)){
+            existingTelevision.setAmbilight(television.isAmbilight());
+        }
+        if ((television.getPrice()) != (existingTelevision.getPrice())){
+            existingTelevision.setPrice(television.getPrice());
+        }
+        if ((television.getSize()) != (existingTelevision.getSize())){
+            existingTelevision.setSize(television.getSize());
+        }
+        if ((television.getRefreshRate()) != (existingTelevision.getRefreshRate())){
+            existingTelevision.setRefreshRate(television.getRefreshRate());
+        }
+        if (!(television.isSmartTv() == false)){
+            existingTelevision.setSmartTv(television.isSmartTv());
+        }
+        if (!(television.isVoiceControl() == false)){
+            existingTelevision.setVoiceControl(television.isVoiceControl());
+        }
+        if (!(television.isHdr() == false)){
+            existingTelevision.setHdr(television.isHdr());
+        }
+        if (!(television.isBluetooth() == false)){
+            existingTelevision.setBluetooth(television.isBluetooth());
+        }
+        if ((television.getOriginalStock()) != (existingTelevision.getOriginalStock())){
+            existingTelevision.setOriginalStock(television.getOriginalStock());
+        }
+        if ((television.getSold()) != (existingTelevision.getSold())){
+            existingTelevision.setSold(television.getSold());
+        }
+        if (!(television.isWifi() == false)){
+            existingTelevision.setWifi(television.isWifi());
         }
 
         televisionRepository.save(existingTelevision);

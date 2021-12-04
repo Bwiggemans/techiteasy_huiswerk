@@ -15,16 +15,17 @@ public class Television {
     private String name;
     private double price;
     private double size;
-    private double refreshrate;
-    private String screentype;
-    private String screenquality;
-    private boolean smarttv;
-    private boolean voicecontrol;
+    private double refreshRate;
+    private String screenType;
+    private String screenQuality;
+    private boolean smartTv;
+    private boolean voiceControl;
     private boolean hdr;
     private boolean bluetooth;
     private boolean ambilight;
-    private Integer originalstock;
+    private Integer originalStock;
     private Integer sold;
+    private boolean wifi;
 
     //constructor in springboot niet nodig
 
@@ -65,35 +66,35 @@ public class Television {
     public void setSize(double size) {
         this.size = size;
     }
-    public double getRefreshrate() {
-        return refreshrate;
+    public double getRefreshRate() {
+        return refreshRate;
     }
-    public void setRefreshrate(double refreshrate) {
-        this.refreshrate = refreshrate;
+    public void setRefreshRate(double refreshRate) {
+        this.refreshRate = refreshRate;
     }
-    public String getScreentype() {
-        return screentype;
+    public String getScreenType() {
+        return screenType;
     }
-    public void setScreentype(String screentype) {
-        this.screentype = screentype;
+    public void setScreenType(String screenType) {
+        this.screenType = screenType;
     }
-    public String getScreenquality() {
-        return screenquality;
+    public String getScreenQuality() {
+        return screenQuality;
     }
-    public void setScreenquality(String screenquality) {
-        this.screenquality = screenquality;
+    public void setScreenQuality(String screenQuality) {
+        this.screenQuality = screenQuality;
     }
-    public boolean isSmarttv() {
-        return smarttv;
+    public boolean isSmartTv() {
+        return smartTv;
     }
-    public void setSmarttv(boolean smarttv) {
-        this.smarttv = smarttv;
+    public void setSmartTv(boolean smartTv) {
+        this.smartTv = smartTv;
     }
-    public boolean isVoicecontrol() {
-        return voicecontrol;
+    public boolean isVoiceControl() {
+        return voiceControl;
     }
-    public void setVoicecontrol(boolean voicecontrol) {
-        this.voicecontrol = voicecontrol;
+    public void setVoiceControl(boolean voiceControl) {
+        this.voiceControl = voiceControl;
     }
     public boolean isHdr() {
         return hdr;
@@ -113,16 +114,22 @@ public class Television {
     public void setAmbilight(boolean ambilight) {
         this.ambilight = ambilight;
     }
-    public Integer getOriginalstock() {
-        return originalstock;
+    public Integer getOriginalStock() {
+        return originalStock;
     }
-    public void setOriginalstock(Integer originalstock) {
-        this.originalstock = originalstock;
+    public void setOriginalStock(Integer originalStock) {
+        this.originalStock = originalStock;
     }
     public Integer getSold() {
         return sold;
     }
     public void setSold(Integer sold) {
         this.sold = sold;
+    }
+    public boolean isWifi() {
+        return wifi;
+    }
+    public void setWifi(boolean wifi) {
+        this.wifi = wifi;
     }
 }
