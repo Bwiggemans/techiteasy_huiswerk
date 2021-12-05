@@ -1,5 +1,6 @@
 package nl.novi.TechItEasy.Controllers;
 
+import nl.novi.TechItEasy.dto.TelevisionRequestDto;
 import nl.novi.TechItEasy.model.Television;
 import nl.novi.TechItEasy.service.TelevisionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +33,8 @@ public class TelevisionController {
         return ResponseEntity.noContent().build();
     }
     @PostMapping(value = "/televisions")
-    public ResponseEntity<Object> addTelevision(@RequestBody Television television){
-        int newId = televisionService.addTelevision(television);
+    public ResponseEntity<Object> addTelevision(@Valid @RequestBody TelevisionRequestDto televisionRequestDto){
+        int newId = televisionService.addTelevision(televisionRequestDto);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newId).toUri();
 

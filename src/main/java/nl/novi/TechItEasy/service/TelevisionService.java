@@ -1,6 +1,7 @@
 package nl.novi.TechItEasy.service;
 
 import nl.novi.TechItEasy.Exceptions.RecordNotFoundException;
+import nl.novi.TechItEasy.dto.TelevisionRequestDto;
 import nl.novi.TechItEasy.model.Television;
 import nl.novi.TechItEasy.repository.TelevisionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +37,34 @@ public class TelevisionService {
     }
 
     public void deleteTelevision(int id){
-        televisionRepository.deleteById(id);
+        if (televisionRepository.existsById(id)) {
+            televisionRepository.deleteById(id);
+        }
+        else {
+            throw new RecordNotFoundException("ID does not exist!!!");
+        }
     }
 
-    public int addTelevision(Television television){
+    public int addTelevision(TelevisionRequestDto televisionRequestDto){
+
+        Television television = new Television();
+        television.setType(televisionRequestDto.getType());
+        television.setBrand(televisionRequestDto.getBrand());
+        television.setName(televisionRequestDto.getName());
+        television.setScreenType(televisionRequestDto.getScreenType());
+        television.setScreenQuality(televisionRequestDto.getScreenQuality());
+        television.setPrice(televisionRequestDto.getPrice());
+        television.setSize(televisionRequestDto.getSize());
+        television.setRefreshRate(televisionRequestDto.getRefreshRate());
+        television.setSmartTv(televisionRequestDto.isSmartTv());
+        television.setWifi(televisionRequestDto.isWifi());
+        television.setVoiceControl(televisionRequestDto.isVoiceControl());
+        television.setHdr(televisionRequestDto.isHdr());
+        television.setBluetooth(televisionRequestDto.isBluetooth());
+        television.setAmbilight(televisionRequestDto.isAmbilight());
+        television.setOriginalStock(televisionRequestDto.getOriginalStock());
+        television.setSold(televisionRequestDto.getSold());
+
         Television newTelevision = televisionRepository.save(television);
         return newTelevision.getId();
     }
@@ -70,6 +95,10 @@ public class TelevisionService {
         televisionRepository.save(storedTelevision);
     }
     public void partialUpdateTelevision(int id, Television television){
+        if (!televisionRepository.existsById(id)) {
+            throw new RecordNotFoundException("No television found");
+        }
+
         Television existingTelevision = televisionRepository.findById(id).orElse(null);
 
         if (!(television.getType()==null) && !television.getType().isEmpty()){
