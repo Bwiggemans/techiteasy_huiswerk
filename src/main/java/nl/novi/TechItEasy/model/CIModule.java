@@ -2,6 +2,8 @@ package nl.novi.TechItEasy.model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "cimodules")
@@ -16,9 +18,11 @@ public class CIModule {
     private String type;
     private double price;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "cimodule_id", referencedColumnName = "id")
+    private List<Television> televisions = new ArrayList<>();
+
     //Getters and setters
-
-
     public int getId() {
         return id;
     }
@@ -49,5 +53,13 @@ public class CIModule {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public List<Television> getTelevisions() {
+        return televisions;
+    }
+
+    public void setTelevisions(List<Television> televisions) {
+        this.televisions = televisions;
     }
 }
