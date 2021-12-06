@@ -67,6 +67,7 @@ public class TelevisionService {
 
         Television newTelevision = televisionRepository.save(television);
         return newTelevision.getId();
+
     }
 
     public void updateTelevision(int id, Television television) {
