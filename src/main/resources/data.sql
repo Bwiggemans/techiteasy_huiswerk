@@ -9,3 +9,12 @@ VALUES
 ('LG', 'LCD-QLED', '50Hz', 895.95, 15.95, 14123, 'QLED', 'HDR', true, false, true, true, true, 99887, 54269, true),
 ('Salora', 'LCD-QLED', '50Hz', 1295.95, 15.95, 14123, 'QLED', 'HDR', true, false, true, true, true, 36474, 25876, false),
 ('Loewe', 'Bild', '50Hz', 695.95, 15.95, 14123, 'QLED', 'HDR', true, false, false, true, false, 45217, 11254, false);
+
+INSERT INTO CIMODULES (name, type, price)
+VALUES
+
+('Smit', 'Carry-in', 59.95),
+('Quantis', 'Carry-in', 79.95),
+('TiVuSat-HD', 'Carry-in', 49.95),
+('Delta', 'Carry-in', 99.95),
+('Ziggo', 'Carry-in', 109.95);
