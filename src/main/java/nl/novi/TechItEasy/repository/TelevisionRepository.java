@@ -16,5 +16,4 @@ public interface TelevisionRepository extends CrudRepository<Television, Integer
 
     @Query(value = "SELECT * FROM televisions b WHERE b.brand LIKE %:s%", nativeQuery = true) // using SQL
     Iterable<Television> searchByBrandLike(@Param("s") String s);
-
 }

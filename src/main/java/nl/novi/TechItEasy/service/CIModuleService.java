@@ -79,8 +79,5 @@ public class CIModuleService {
             //exception maken
             throw new RecordNotFoundException("Id does not exist!!!");
         }
-
     }
-
-
 }
