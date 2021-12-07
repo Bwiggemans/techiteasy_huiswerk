@@ -1,6 +1,7 @@
 package nl.novi.TechItEasy.service;
 
 import nl.novi.TechItEasy.Exceptions.RecordNotFoundException;
+import nl.novi.TechItEasy.dto.CImoduleRequastDto;
 import nl.novi.TechItEasy.model.CIModule;
 import nl.novi.TechItEasy.model.Television;
 import nl.novi.TechItEasy.repository.CIModuleRepository;
@@ -45,7 +46,12 @@ public class CIModuleService {
         }
     }
 
-    public int addCIModule(CIModule ciModule){
+    public int addCIModule(CImoduleRequastDto cImoduleRequastDto){
+
+        CIModule ciModule = new CIModule();
+        ciModule.setName(cImoduleRequastDto.getName());
+        ciModule.setType(cImoduleRequastDto.getType());
+        ciModule.setPrice(cImoduleRequastDto.getPrice());
 
         CIModule newCImodule = ciModuleRepository.save(ciModule);
         return newCImodule.getId();

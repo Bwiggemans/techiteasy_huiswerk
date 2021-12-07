@@ -1,5 +1,6 @@
 package nl.novi.TechItEasy.Controllers;
 
+import nl.novi.TechItEasy.dto.CImoduleRequastDto;
 import nl.novi.TechItEasy.model.CIModule;
 import nl.novi.TechItEasy.model.Television;
 import nl.novi.TechItEasy.service.CIModuleService;
@@ -31,8 +32,8 @@ public class CIModuleController {
         return ResponseEntity.noContent().build();
     }
     @PostMapping(value = "/cimodules")
-    public ResponseEntity<Object> addCIModule(@RequestBody CIModule ciModule){
-        int newId = ciModuleService.addCIModule(ciModule);
+    public ResponseEntity<Object> addCIModule(@Valid @RequestBody CImoduleRequastDto cImoduleRequastDto){
+        int newId = ciModuleService.addCIModule(cImoduleRequastDto);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newId).toUri();
 
