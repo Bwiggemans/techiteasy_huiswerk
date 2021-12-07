@@ -1,5 +1,8 @@
 package nl.novi.TechItEasy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -26,6 +29,11 @@ public class Television {
     private Integer originalStock;
     private Integer sold;
     private boolean wifi;
+
+    @JsonIgnoreProperties("televisions")
+    @ManyToOne
+    @JoinColumn(name = "cimodule_id", referencedColumnName = "id")
+    private CIModule owner;
 
     //constructor in springboot niet nodig
 
@@ -131,5 +139,11 @@ public class Television {
     }
     public void setWifi(boolean wifi) {
         this.wifi = wifi;
+    }
+    public CIModule getOwner() {
+        return owner;
+    }
+    public void setOwner(CIModule owner) {
+        this.owner = owner;
     }
 }

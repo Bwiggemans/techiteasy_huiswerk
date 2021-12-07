@@ -18,8 +18,7 @@ public class CIModule {
     private String type;
     private double price;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "cimodule_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Television> televisions = new ArrayList<>();
 
     //Getters and setters
