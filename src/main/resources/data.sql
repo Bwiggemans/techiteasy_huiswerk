@@ -19,7 +19,15 @@ VALUES
 
 INSERT INTO remotecontrollers (compatible_with, battery_type, name, brand, price, original_stock)
 VALUES
-('NH3216SMART', 'AAA', 'Nikkei HD smart TV controller', 'Nikkei', 12.99, 235885),
-('43PUS6504/12/L', 'AA', 'Philips smart TV controller', 'Philips', 12.99, 235885),
-('OLED55C16LA', 'AAA', 'OLED55C16LA TV controller', 'LG', 12.99, 235885);
+('NH3216SMART', 'AAA', 'Nikkei HD smart TV controller', 'Nikkei', 15.95, 741658),
+('43PUS6504/12/L', 'AA', 'Philips smart TV controller', 'Philips', 11.95, 415235),
+('OLED55C16LA', 'AAA', 'OLED55C16LA TV controller', 'LG', 13.75, 112457);
+
+INSERT INTO wallbrackets (size, ajustable, name, price)
+VALUES
+('25X32', false, 'LG bracket', 45.75),
+('25X32/32X40', true, 'LG bracket', 37.95),
+('25X25', false, 'Philips bracket', 38.85),
+('25X32/32X40', true, 'Nikkei bracket', 37.95),
+('25X32', false, 'Nikkei bracket', 44.75);
 
