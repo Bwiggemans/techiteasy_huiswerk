@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class CImoduleRequastDto {
+public class CImoduleRequestDto {
 
     //Attributen
     @NotBlank

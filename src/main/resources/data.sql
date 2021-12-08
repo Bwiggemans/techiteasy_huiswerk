@@ -17,3 +17,9 @@ VALUES
 ('Delta', 'Carry-in', 99.95),
 ('Ziggo', 'Carry-in', 109.95);
 
+INSERT INTO remotecontrollers (compatible_with, battery_type, name, brand, price, original_stock)
+VALUES
+('NH3216SMART', 'AAA', 'Nikkei HD smart TV controller', 'Nikkei', 12.99, 235885),
+('43PUS6504/12/L', 'AA', 'Philips smart TV controller', 'Philips', 12.99, 235885),
+('OLED55C16LA', 'AAA', 'OLED55C16LA TV controller', 'LG', 12.99, 235885);
+

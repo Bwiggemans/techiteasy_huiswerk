@@ -1,7 +1,6 @@
 package nl.novi.TechItEasy.Controllers;
 
-import nl.novi.TechItEasy.dto.CImoduleRequastDto;
-import nl.novi.TechItEasy.model.CIModule;
+import nl.novi.TechItEasy.dto.CImoduleRequestDto;
 import nl.novi.TechItEasy.model.Television;
 import nl.novi.TechItEasy.service.CIModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +31,8 @@ public class CIModuleController {
         return ResponseEntity.noContent().build();
     }
     @PostMapping(value = "/cimodules")
-    public ResponseEntity<Object> addCIModule(@Valid @RequestBody CImoduleRequastDto cImoduleRequastDto){
-        int newId = ciModuleService.addCIModule(cImoduleRequastDto);
+    public ResponseEntity<Object> addCIModule(@Valid @RequestBody CImoduleRequestDto cImoduleRequestDto){
+        int newId = ciModuleService.addCIModule(cImoduleRequestDto);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newId).toUri();
 
