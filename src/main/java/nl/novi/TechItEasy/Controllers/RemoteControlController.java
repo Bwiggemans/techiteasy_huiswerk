@@ -1,5 +1,6 @@
 package nl.novi.TechItEasy.Controllers;
 
+import nl.novi.TechItEasy.dto.RemoteControlRequestDto;
 import nl.novi.TechItEasy.model.RemoteControl;
 import nl.novi.TechItEasy.service.RemoteControlService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,8 @@ public class RemoteControlController {
         return ResponseEntity.noContent().build();
     }
     @PostMapping(value = "/remotecontrollers")
-    public ResponseEntity<Object> addRemoteControl(@RequestBody RemoteControl remoteControl){
-        int newId = remoteControlService.addRemoteControl(remoteControl);
+    public ResponseEntity<Object> addRemoteControl(@Valid @RequestBody RemoteControlRequestDto remoteControlRequestDto){
+        int newId = remoteControlService.addRemoteControl(remoteControlRequestDto);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newId).toUri();
 

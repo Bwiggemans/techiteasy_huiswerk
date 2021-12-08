@@ -1,6 +1,7 @@
 package nl.novi.TechItEasy.service;
 
 import nl.novi.TechItEasy.Exceptions.RecordNotFoundException;
+import nl.novi.TechItEasy.dto.RemoteControlRequestDto;
 import nl.novi.TechItEasy.model.RemoteControl;
 import nl.novi.TechItEasy.repository.RemoteControlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,16 @@ public class RemoteControlService {
         }
     }
 
-    public int addRemoteControl(RemoteControl remoteControl){
+    public int addRemoteControl(RemoteControlRequestDto remoteControlRequestDto){
+
+        RemoteControl remoteControl = new RemoteControl();
+
+        remoteControl.setCompatibleWith(remoteControlRequestDto.getCompatibleWith());
+        remoteControl.setBatteryType(remoteControlRequestDto.getBatteryType());
+        remoteControl.setName(remoteControlRequestDto.getName());
+        remoteControl.setBrand(remoteControlRequestDto.getBrand());
+        remoteControl.setPrice(remoteControlRequestDto.getPrice());
+        remoteControl.setOriginalStock(remoteControlRequestDto.getOriginalStock());
 
         RemoteControl newRemoteControl = remoteControlRepository.save(remoteControl);
         return newRemoteControl.getId();
