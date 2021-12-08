@@ -30,6 +30,10 @@ public class Television {
     private Integer sold;
     private boolean wifi;
 
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "remotecontrollers_id", referencedColumnName = "id")
+    private RemoteControl remoteControl;
+
     @JsonIgnoreProperties("televisions")
     @ManyToOne
     @JoinColumn(name = "cimodule_id", referencedColumnName = "id")
@@ -145,5 +149,13 @@ public class Television {
     }
     public void setOwner(CIModule owner) {
         this.owner = owner;
+    }
+
+    public RemoteControl getRemoteControl() {
+        return remoteControl;
+    }
+
+    public void setRemoteControl(RemoteControl remoteControl) {
+        this.remoteControl = remoteControl;
     }
 }
