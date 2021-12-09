@@ -1,5 +1,6 @@
 package nl.novi.TechItEasy.Controllers;
 
+import nl.novi.TechItEasy.dto.WallBracketRequestDto;
 import nl.novi.TechItEasy.model.WallBracket;
 import nl.novi.TechItEasy.service.WallBracketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,8 @@ public class WallBracketController {
         return ResponseEntity.noContent().build();
     }
     @PostMapping(value = "/wallbrackets")
-    public ResponseEntity<Object> addWallBracket(@RequestBody WallBracket wallBracket){
-        int newId = wallBracketService.addWallBracket(wallBracket);
+    public ResponseEntity<Object> addWallBracket(@Valid @RequestBody WallBracketRequestDto wallBracketRequestDto){
+        int newId = wallBracketService.addWallBracket(wallBracketRequestDto);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newId).toUri();
 

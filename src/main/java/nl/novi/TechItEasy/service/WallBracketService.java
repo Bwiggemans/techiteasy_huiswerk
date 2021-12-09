@@ -1,6 +1,7 @@
 package nl.novi.TechItEasy.service;
 
 import nl.novi.TechItEasy.Exceptions.RecordNotFoundException;
+import nl.novi.TechItEasy.dto.WallBracketRequestDto;
 import nl.novi.TechItEasy.model.WallBracket;
 import nl.novi.TechItEasy.repository.WallBracketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,14 @@ public class WallBracketService {
         }
     }
 
-    public int addWallBracket(WallBracket wallBracket){
+    public int addWallBracket(WallBracketRequestDto wallBracketRequestDto){
+
+        WallBracket wallBracket = new WallBracket();
+
+        wallBracket.setSize(wallBracketRequestDto.getSize());
+        wallBracket.setName(wallBracketRequestDto.getName());
+        wallBracket.setAjustable(wallBracketRequestDto.isAjustable());
+        wallBracket.setPrice(wallBracketRequestDto.getPrice());
 
         WallBracket newWallBracket = wallBracketRepository.save(wallBracket);
         return newWallBracket.getId();
