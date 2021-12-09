@@ -17,6 +17,9 @@ public class RemoteControl {
     private double price;
     private Integer originalStock;
 
+    @OneToOne
+    Television television;
+
     //Getters and setters
     public int getId() {
         return id;

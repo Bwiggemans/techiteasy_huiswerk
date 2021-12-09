@@ -30,9 +30,8 @@ public class Television {
     private Integer sold;
     private boolean wifi;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "remotecontrollers_id", referencedColumnName = "id")
-    private RemoteControl remoteControl;
+    @OneToOne(mappedBy = "television")
+    RemoteControl remoteControl;
 
     @JsonIgnoreProperties("televisions")
     @ManyToOne
